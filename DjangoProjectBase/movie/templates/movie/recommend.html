@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Recomendación</title>
+</head>
+<body>
+    <h1>🎬 Sistema de Recomendación de Películas</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <label for="prompt">Escribe una descripción o tema:</label><br>
+        <input type="text" id="prompt" name="prompt" size="60" required>
+        <button type="submit">Buscar</button>
+    </form>
+
+    {% if recommendation %}
+        <h2>Recomendación</h2>
+        <p><strong>{{ recommendation.title }}</strong></p>
+        <p>Similitud: {{ similarity_score|floatformat:4 }}</p>
+        {% if recommendation.image %}
+            <img src="{{ recommendation.image.url }}" alt="{{ recommendation.title }}" width="300">
+        {% endif %}
+        <p>{{ recommendation.description }}</p>
+    {% endif %}
+</body>
+</html>

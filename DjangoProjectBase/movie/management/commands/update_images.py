@@ -51,10 +51,9 @@ class Command(BaseCommand):
 
         # ✅ Generate image with OpenAI
         response = client.images.generate(
-            model="dall-e-2",
+            model="dall-e-3",
             prompt=prompt,
-            size="256x256",
-            quality="standard",
+            size="1024x1024",
             n=1,
         )
         image_url = response.data[0].url
